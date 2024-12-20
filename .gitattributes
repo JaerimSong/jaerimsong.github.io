@@ -1,2 +1,2 @@
-apple-app-site-association application/json content-type=application/json
+apple-app-site-association content-type=application/json
 .well-known/apple-app-site-association content-type=application/json
