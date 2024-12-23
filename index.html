@@ -41,7 +41,33 @@
 
 
 
-<a href="com.utinfra.kinisports://google/link" target="_self">Open in App</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open in App</title>
+</head>
+<body>
+  <h1>Welcome to Our App</h1>
+  <p>Click below to open the app:</p>
+  <a href="com.utinfra.kinisports://google/link" onclick="openAppOrRedirect()">Open in App</a>
+
+  <script>
+    function openAppOrRedirect() {
+      const customScheme = "com.utinfra.kinisports://google/link";
+      const appStoreURL = "https://apps.apple.com/app/id123456789";
+
+      // Custom Scheme 호출
+      window.location.href = customScheme;
+
+      // Custom Scheme 실패 시 App Store로 리디렉션
+      setTimeout(() => {
+        window.location.href = appStoreURL;
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
+
 
 
 
