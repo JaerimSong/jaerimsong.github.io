@@ -38,5 +38,23 @@
 </script>
  -->
 
-<a href="com.utinfra.kinisports://google/link" target="_self">Open in App</a>
 
+
+
+<!-- <a href="com.utinfra.kinisports://google/link" target="_self">Open in App</a> -->
+
+
+
+
+<script>
+  // Safari 앱에서 Universal Link 열기
+  function openInSafari() {
+    const universalLink = "https://example.com/some-path";
+    window.location.href = universalLink;
+  }
+
+  // 페이지 로드 시 실행
+  window.onload = () => {
+    openInSafari();
+  };
+</script>
