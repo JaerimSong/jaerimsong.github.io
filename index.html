@@ -81,6 +81,8 @@
     <h2>Welcome to Our App</h2>
     <h4>Web-App Data Exchange or DeepLink Test</h4>
     <button onclick="openAppOrRedirect()">앱으로 열기</button>
+    <button onclick="sendToFlutter()">앱으로 수동 전송</button>
+
   </center>
 
   <script>
@@ -126,6 +128,12 @@
         window.location.href = appStoreURL;
       }, 2000);
     }
+
+    function sendToFlutter() {
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('web2app', 'Manual Hello!', ['User', 99]);
+  }
+}
   </script>
 </body>
 </html>
