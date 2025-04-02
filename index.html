@@ -81,7 +81,9 @@
     <h2>Welcome to Our App</h2>
     <h4>Web-App Data Exchange or DeepLink Test</h4>
     <button onclick="openAppOrRedirect()">앱으로 열기</button>
-    <button onclick="sendToFlutter()">앱으로 수동 전송</button>
+    <button onclick="sendToFlutter_resultJoin()">resultJoin 테스트</button>
+     <button onclick="sendToFlutter_resultAccountCon()">resultAccountCon 테스트</button>
+
 
   </center>
 
@@ -128,7 +130,19 @@
       }, 2000);
     }
 
- function sendToFlutter() {
+ function sendToFlutter_resultJoin() {
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('resultJoin', {
+            "ciName": "송재림",
+                    "ciBirth": "19921228,
+                    "ciGender": "M",
+                    "ciPhone": "010323242",
+                    "DI": "Di"
+    });
+  }
+}
+
+    function sendToFlutter_resultAccountCon() {
   if (window.flutter_inappwebview) {
     window.flutter_inappwebview.callHandler('resultAccountCon', {
       ParamData: "EncryptedValue123=="
