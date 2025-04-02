@@ -91,10 +91,9 @@
       console.log("✅ InAppWebView detected");
 
       // 웹 → 앱: 데이터 보내기
-      // window.flutter_inappwebview.callHandler('web2app', 'Hello from Web!', ['홍길동', 33]);
-      window.flutter_inappwebview.callHandler('resultAccountCon', {
-  ParamData: paramData
-});
+        window.flutter_inappwebview.callHandler('resultAccountCon', {
+      ParamData: "EncryptedValue123=="
+    });
 
       // 앱 → 웹: 데이터 요청 및 수신
       window.flutter_inappwebview.callHandler('app2web')
