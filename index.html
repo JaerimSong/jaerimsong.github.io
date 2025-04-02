@@ -41,7 +41,7 @@
 
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>Open in App</title>
@@ -60,6 +60,65 @@
       window.location.href = customScheme;
 
       // Custom Scheme 실패 시 App Store로 리디렉션
+      setTimeout(() => {
+        window.location.href = appStoreURL;
+      }, 2000);
+    }
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open in App / InAppWebView Test</title>
+</head>
+<body>
+  <center>
+    <h2>Welcome to Our App</h2>
+    <h4>Web-App Data Exchange or DeepLink Test</h4>
+    <button onclick="openAppOrRedirect()">앱으로 열기</button>
+  </center>
+
+  <script>
+    // ✅ 1. InAppWebView 내에서 실행될 JS 통신
+    window.addEventListener("flutterInAppWebViewPlatformReady", function () {
+      console.log("✅ InAppWebView detected");
+
+      // 웹 → 앱: 데이터 보내기
+      window.flutter_inappwebview.callHandler('web2app', 'Hello from Web!', ['홍길동', 33]);
+
+      // 앱 → 웹: 데이터 요청 및 수신
+      window.flutter_inappwebview.callHandler('app2web')
+        .then(function (result) {
+          alert("앱에서 받은 데이터: " + result);
+        });
+
+      // 웹 ↔ 앱: 양방향 통신 예시
+      window.flutter_inappwebview.callHandler('WebAppDataExchange', 1)
+        .then(function (result) {
+          alert("양방향 통신 결과: " + JSON.stringify(result?.result));
+        });
+    });
+
+    // ✅ 2. 일반 브라우저인 경우 → 앱 열기 (딥링크 또는 마켓)
+    function openAppOrRedirect() {
+      const isInAppWebView = !!window.flutter_inappwebview;
+      if (isInAppWebView) {
+        console.log("Flutter WebView 내부에서는 딥링크 실행 안 함");
+        return;
+      }
+
+      const customScheme = "com.utinfra.kinisports://google/link";
+      const appStoreURL = "https://apps.apple.com/app/id123456789";
+
+      // 1) 커스텀 스킴 시도
+      window.location.href = customScheme;
+
+      // 2) 실패 시 앱스토어 리디렉션
       setTimeout(() => {
         window.location.href = appStoreURL;
       }, 2000);
